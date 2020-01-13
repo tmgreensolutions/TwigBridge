@@ -116,7 +116,7 @@ class Loader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function getSourceContext($name)
+    public function getSourceContext($name): Source
     {
         $path = $this->findTemplate($name);
 
@@ -126,7 +126,7 @@ class Loader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function getCacheKey($name)
+    public function getCacheKey($name): string
     {
         return $this->findTemplate($name);
     }
@@ -134,7 +134,7 @@ class Loader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function isFresh($name, $time)
+    public function isFresh($name, $time): bool
     {
         return $this->files->lastModified($this->findTemplate($name)) <= $time;
     }

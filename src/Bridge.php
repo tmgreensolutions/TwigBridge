@@ -17,6 +17,7 @@ use InvalidArgumentException;
 use Twig\Environment;
 use Twig\Error\Error;
 use Twig\Loader\LoaderInterface;
+use Twig\Template;
 
 /**
  * Bridge functions between Laravel & Twig
@@ -26,7 +27,7 @@ class Bridge extends Environment
     /**
      * @var string TwigBridge version
      */
-    const BRIDGE_VERSION = '0.10.0';
+    const BRIDGE_VERSION = '0.11.0';
 
     /**
      * @var \Illuminate\Contracts\Container\Container
@@ -70,11 +71,12 @@ class Bridge extends Environment
         $this->app = $app;
     }
 
-    public function loadTemplate($name, $index = null)
+    public function loadTemplate($cls, $name, $index = null): Template
     {
         $template = parent::loadTemplate($name, $index);
 
-        $template->setName($this->normalizeName($name));
+        //this seems to be removed in Version 3.x
+        //$template->setName($this->normalizeName($name));
 
         return $template;
     }
