@@ -73,7 +73,7 @@ class Bridge extends Environment
 
     public function loadTemplate($cls, $name, $index = null): Template
     {
-        $template = parent::loadTemplate($name, $index);
+        $template = parent::loadTemplate($cls, $name, $index);
 
         //this seems to be removed in Version 3.x
         //$template->setName($this->normalizeName($name));
